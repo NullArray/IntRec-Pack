@@ -1,7 +1,7 @@
 # IntRec-Pack
 Intelligence and Reconnaissance Package/Bundle installer.
 
-IntRec-Pack is a Bash script designed to download, install and deploy several quality OSINT, Recon and Threat Intelligence tools. Due to the fact it manages the installation of the various dependencies related to these programs as well it aims tro be a comprehesnive assistant in setting up your intelligence gathering environment. Below is an overview of the tools and utilities it will help you set up.
+IntRec-Pack is a Bash script designed to download, install and deploy several quality OSINT, Recon and Threat Intelligence tools. Due to the fact it manages the installation of the various dependencies related to these programs as well it aims to be a comprehesnive assistant in setting up your intelligence gathering environment. Below is an overview of the tools and utilities it will help you set up.
 
 ```
 +-----------------------+-------------------------------------------+
