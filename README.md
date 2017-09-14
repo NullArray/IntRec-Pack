@@ -31,7 +31,7 @@ git clone https://github.com/NullArray/IntRec-Pack.git
 cd IntRec-pack
 chmod +x intrec.sh
 ```
-After which it can be started from the command line with `./intrec.sh`. Upon doing so you will be presented with a menu the options for which are as follows:
+After which it can be started from the command line with `sudo ./intrec.sh`. Upon doing so you will be presented with a menu the options for which are as follows:
 
 ```
 1) Help	                 4) Specify Install Location
