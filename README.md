@@ -43,7 +43,7 @@ The **`help`** option displays further usage information and general details abo
 
 ### Note
 
-Since the **`Online Resource`** features employs functionality derived from Python, Selenium and the Mozilla Geckodriver, I have added some logic to the script that will automatically install the proper version of each component needed in order for the script to function as it should.
+Since the **`Online Resources`** feature employs functionality derived from Python, Selenium and the Mozilla Geckodriver, I have added some logic to the script that will automatically install the proper version of each component needed in order for the script to function as it should.
 
 While this functionality has been tested and the script is designed to automate as much as possible for ease of use. Should you find you have any issues or perhaps encounter a bug please feel free to [Open a Ticket](https://github.com/NullArray/IntRec-Pack/issues) or [Submit a Pull Request](https://github.com/NullArray/IntRec-Pack/pulls)
 
