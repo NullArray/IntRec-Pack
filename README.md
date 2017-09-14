@@ -28,7 +28,7 @@ Clone the tool from the repo and make it executable like so.
 
 ```
 git clone https://github.com/NullArray/IntRec-Pack.git
-cd IntRec-pack
+cd IntRec-Pack
 chmod +x intrec.sh
 ```
 After which it can be started from the command line with `sudo ./intrec.sh`. Upon doing so you will be presented with a menu the options for which are as follows:
