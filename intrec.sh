@@ -575,6 +575,7 @@ function main_menu()
 				
 					read -p 'Would you like to automatically resolve this issue? Y/n : ' choice
 					if [[ $choice == 'y' ]]; then
+						sudo pip install selenium
 						get_gdriver
 					else
 						warning "Not Resolving"
