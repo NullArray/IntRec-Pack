@@ -119,12 +119,12 @@ function get_gdriver()
 		notification "x32 architecture detected..."
 		sleep 1
       
-		wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux32.tar.gz | tee -a $cwd/IntRec-Logs/gdriver_install.log
-		tar -xvf geckodriver-v0.18.0-linux32.tar.gz | tee -a $cwd/IntRec-Logs/gdriver_install.log
-		rm geckodriver-v0.18.0-linux32.tar.gz | tee -a $cwd/IntRec-Logs/gdriver_install.log
-		chmod +x geckodriver | tee -a $cwd/IntRec-Logs/gdriver_install.log
-		mv geckodriver /usr/sbin | tee -a $cwd/IntRec-Logs/gdriver_install.log
-		sudo ln -s /usr/sbin/geckodriver /usr/bin/geckodriver | tee -a $cwd/IntRec-Logs/gdriver_install.log
+		wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux32.tar.gz
+		tar -xvf geckodriver-v0.18.0-linux32.tar.gz
+		rm geckodriver-v0.18.0-linux32.tar.gz 
+		chmod +x geckodriver 
+		mv geckodriver /usr/sbin 
+		sudo ln -s /usr/sbin/geckodriver /usr/bin/geckodriver
       
 		notification "Geckodriver has been succesfully installed."
 	fi
@@ -301,7 +301,7 @@ function list()
 					
 					sudo pip install argparse dnspython requests
 					
-					notification "Sublist3r was nstalled succesfully."
+					notification "Sublist3r was succesfully installed."
 				fi
 				tools
 				printf "%b \n"
