@@ -39,7 +39,7 @@ After which it can be started from the command line with `sudo ./intrec.sh`. Upo
 3) Install All           6) Quit
 ```
 
-The **`help`** option displays further usage information and general details about the tool. **`List and Install`** will list all the tools available for download/installation and lets you select the ones you would like. Upon doing so the tool plus it's dependencies will be installed in the current working directory. Unless the **`Specify Install Location`** has been used to provide a path to a custom location. **`Install All`** will download and install all the tools available with this script and **`Online Resources`** will open the web applications previously mentioned.
+The **`help`** option displays further usage information and general details about the tool. **`List and Install`** will list all the tools available for download/installation and lets you select the ones you would like. Upon doing so the tool plus it's dependencies will be installed in the current working directory. Unless the **`Specify Install Location`** option has been used to provide a path to a custom location. **`Install All`** will download and install all the tools available with this script and **`Online Resources`** will open the web applications previously mentioned.
 
 ### Note
 
