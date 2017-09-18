@@ -41,6 +41,21 @@ After which it can be started from the command line with `sudo ./intrec.sh`. Upo
 
 The **`help`** option displays further usage information and general details about the tool. **`List and Install`** will list all the tools available for download/installation and lets you select the ones you would like. Upon doing so the tool plus it's dependencies will be installed in the current working directory. Unless the **`Specify Install Location`** option has been used to provide a path to a custom location. **`Install All`** will download and install all the tools available with this script and **`Online Resources`** will open the web applications previously mentioned.
 
+## Update
+
+The script has been updated to version 1.0.1. 
+
+
+**Changelog**
+
+Each installation operation now has its own function in order to make the script modular. This will also allow for the easy addition of operations that would install other/more tools in the future.
+
+Additional checks have been added to the script in order to look for the presence of utilities such as `wget`, `git` and `pip`. This is important because some distros such as Debian and Devuan do not come with these utilities installed by default. Should the script find any of these utilities are missing it will attempt to automatically resolve the issue. Making the script effective and compatible with most Debian based distros.
+
+From now on IntRec-Pack will check to see if it has been started with super user privilege. Since there are a lot of `sudo` commands in the script this will prevent the user from running into trouble halfway through the execution.
+
+Special thanks to (Chandrapal)[https://github.com/Chan9390] for his contributions to this latest version of the tool.
+
 ### Note
 
 Since the **`Online Resources`** feature employs functionality derived from Python, Selenium and the Mozilla Geckodriver, I have added some logic to the script that will automatically install the proper version of each component needed in order for the script to function as it should.
