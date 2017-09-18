@@ -8,23 +8,23 @@ RED=$ESC"31;01m"
 GREEN=$ESC"32;01m"
 
 # Warning
-function warning() {
-	echo -e "\n$RED [!] $1 $RESET\n"
-}
+function warning() 
+{	echo -e "\n$RED [!] $1 $RESET\n"
+	}
 
 # Green notification
-function notification() {
-	echo -e "\n$GREEN [+] $1 $RESET\n"
+function notification() 
+{	echo -e "\n$GREEN [+] $1 $RESET\n"
 }
 
 # Cyan notification
-function notification_b() {
-	echo -e "\n$CYAN [-] $1 $RESET\n"
-}
+function notification_b() 
+{	echo -e "\n$CYAN [-] $1 $RESET\n"
+	}
 
 # Print logo and general info
-function logo() {
-	echo -e "$CYAN"
+function logo() 
+{	echo -e "$CYAN"
 	echo -e "\
  _____ _____ _____ _____ _____ _____     _____ _____ _____ _____
 |     |   | |_   _| __  |   __|     |___|  _  |  _  |     |  |  |
@@ -32,17 +32,17 @@ function logo() {
 |_____|_|___| |_| |__|__|_____|_____|   |__|  |__|__|_____|__|__|
 
 #################################################################
-#---Author: NullArray/Vector---#	IntRec-Pack,		#
+#---Author:  NullArray/Vector--#	IntRec-Pack,		#
 #---Twitter: @AntiSec_Inc------#	Intelligence		#
-#------------------------------#	and Reconnaissance	#
-#---Type: Bundle Installer-----#	Package Installer	#
+#---Type:    Bundle Installer--#	and Reconnaissance	#
+#---Version: 1.0.1-------------#	Package Installer	#
 #################################################################" && echo -e "$RESET\n"
 	main_menu
-}
+	}
 
 # print tool list
-function tools() {
-	notification_b "Available tools, select a number to install"
+function tools() 
+{	notification_b "Available tools, select a number to install"
 	printf "\
 +-----------------------+-------------------------------------------+
 | Tool                  | Utility type and feature summary          |
@@ -59,21 +59,21 @@ function tools() {
 |10.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
 +-----------------------+-------------------------------------------+\n"
 	list
-}
+	}
 
-function opt_list() {
-	notification_b "Welcome to IntRec-Pack"
+function opt_list() 
+{	notification_b "Welcome to IntRec-Pack"
 	printf "
 1) Help	                 4) Specify Install Location
 2) List and Install      5) Online Resources
 3) Install All           6) Quit\n"
 
 	main_menu
-}
+	}
 
 # Display usage information and details
-function usage() {
-	notification_b "Welcome to IntRec-Pack"
+function usage() 
+{	notification_b "Welcome to IntRec-Pack"
 	printf "This script fetches and installs a selection
 of tools used in open source intelligence gathering, and
 reconnaissance. Functionality to install any dependencies needed
@@ -96,11 +96,110 @@ serves as a curated list of open source intelligence tools, websites and related
 materials for use as a comprehensive reference guide. The second item in the
 'Online Resources' option is HoneyDB which is a threat intelligence aggregator.
 \n"
-}
+	}
+
+# Function to check for the existence of common Linux utilities needed to perform
+# some of the install operations. Distros like Debian might not have some of these
+# available by default.
+function nix_util()
+{	notification_b "Checking Linux utilities required by the installer."
+	sleep 2
+	
+	# Check for sudo
+	su_do=$(which sudo)
+	case $su_do in
+		*/usr/bin/sudo*)
+		sd=1
+		;;
+	esac
+	
+	if [[ $sd != 1 ]]; then
+		warning "Hueristics indicate sudo is not installed on this system."
+		read -p 'Automatically resolve? Y/n : ' choice
+		if [[ $choice == 'y' ]]; then
+			notification "Please enter root password."
+			su -
+			apt-get install sudo && notification "Sudo was succesfully installed" || warning "An error was encountered while trying to install sudo. Quitting..." && exit 1
+			printf "Please add your regular user account to sudoers and restart the script."
+			printf "Quitting..."
+			sleep 2 && exit 1
+		else
+			warning "Not resolving."
+			sleep 2 && exit 1
+		fi
+	fi
+	
+	# Check to see if we have wget
+	wgt=$(which wget)
+	case $wgt in 
+		*/usr/bin/wget*)
+		wg=1
+		;;
+	esac
+	
+	if [[ $wg != 1 ]]; then
+		warning "Heuristics indicate wget is not installed on this system."
+		notification "Attempting to resolve."
+		sleep 2
+		
+		sudo apt-get install wget
+		notification "Wget has been succesfully installed."
+		sleep 2
+	fi
+	
+	# Check to see if we have git
+	get_git=$(which git)
+	case $get_git in 
+		*/usr/bin/git*)
+		ggit=1
+		;;
+	esac
+
+	if [[ $ggit != 1 ]]; then
+		warning "Heuristics indicate git is not installed on this system."
+		notification "Attempting to resolve."
+		sleep 2
+		
+		sudo apt-get install git
+		notification "Git has been succesfully installed."
+		sleep 2
+	fi
+	
+	# Check to see if we have pip, if not get setuptools and install pip
+	pypip=$(which pip)
+	case $pypip in
+		*/usr/bin/pip*)
+		pp=1
+		;;
+	esac
+	
+	if [[ $pp != 1 ]]; then
+		warning "Heuristics indicate pip is not installed in this system."
+		notification "Attempting to resolve."
+		sleep 2
+		
+		sudo apt-get install python-setuptools
+		notification "Python setuptools has been installed, installing pip..."
+		sleep 2
+		
+		cwd=$(pwd)
+		git clone https://github.com/pypa/pip.git && cd pip
+		python setup.py install && cd $cwd
+		rm -rf pip
+		
+		notification "Pip has been succesfully installed."
+		sleep 2
+	fi
+		
+	notification "All Linux utilities required by the installer appear to be present. Proceeding to main menu."
+	sleep 2 && clear
+	logo
+	
+	}
 
 # Function to check CPU architecture and install the proper version of Geckodriver
-function get_gdriver() {
-	printf "\n\n"
+function get_gdriver() 
+{	printf "\n\n"
 	MACHINE_TYPE=`uname -m`
 	if [[ ${MACHINE_TYPE} == 'x86_64' ]]; then
 		notification "x86_64 architecture detected..."
@@ -125,11 +224,11 @@ function get_gdriver() {
 		sudo ln -s /usr/sbin/geckodriver /usr/bin/geckodriver
 		notification "Geckodriver has been succesfully installed."
 	fi
-}
+	}
 
 # Component of the mass install operation
-function mass_depend() {
-	notification "Installing remaining dependencies."
+function mass_depend() 
+{	notification "Installing remaining dependencies."
 
 	sudo pip install ioc_parser
 	sudo pip install lxml M2Crypto cherrypy mako requests bs4
@@ -139,14 +238,14 @@ function mass_depend() {
 	notification "All operations completed."
 
 	logo
-}
+	}
 
 # The Mimir install operation will be a little more involved since we will need
 # to check and make sure we have OpenSSL support in the PycURL module
 # Mimir depends on. This is important in order for Mimir
 # to be compatible with HoneyDB and retrieve the data we want via the API.
-function mimir_install() {
-	printf "\n\n"
+function mimir_install() 
+{	printf "\n\n"
 	if [[ -d "Mimir" ]]; then
 		warning "Mimir is already installed."
 	else
@@ -230,10 +329,10 @@ function mimir_install() {
 			sleep 2
 			tools
 		fi
-}
+	}
 
-function QuickScan() {
-	if [[ -d "QuickScan" ]]; then
+function QuickScan() 
+{	if [[ -d "QuickScan" ]]; then
 		warning "QuickScan is already installed."
 	else
 		notification "Installing QuickScan."
@@ -244,7 +343,7 @@ function QuickScan() {
 		sudo pip install blessings whois
 		notification "QuickScan was successfully installed."
 	fi
-}
+	}
 
 function DNSRecon() {
 	if [[ -d "dnsrecon" ]]; then
@@ -260,8 +359,8 @@ function DNSRecon() {
 	fi
 }
 
-function Sublist3r() {
-	if [[ -d "Sublist3r" ]]; then
+function Sublist3r() 
+{	if [[ -d "Sublist3r" ]]; then
 		warning "Sublist3r is already installed."
 	else
 		notification "Installing Sublist3r."
@@ -272,10 +371,10 @@ function Sublist3r() {
 		sudo pip install argparse dnspython requests
 		notification "Sublist3r was successfully installed."
 	fi
-}
+	}
 
-function TekDefense() {
-	if [[ -d "TekDefense-Automater" ]]; then
+function TekDefense() 
+{	if [[ -d "TekDefense-Automater" ]]; then
 		warning "TekDefense-Automater is already installed."
 	else
 		notification "Installing TekDefense-Automater."
@@ -286,10 +385,10 @@ function TekDefense() {
 		sudo pip install argparse requests
 		notification "TekDefense-Automater was successfully installed."
 	fi
-}
+	}
 
-function theHarvester() {
-	if [[ -d "theHarvester" ]]; then
+function theHarvester() 
+{	if [[ -d "theHarvester" ]]; then
 		warning "TheHarvester is already installed."
 	else
 		notification "Installing TheHarvester."
@@ -302,8 +401,8 @@ function theHarvester() {
 	fi
 }
 
-function ioc_parser() {
-	if [[ -d "ioc_parser" ]]; then
+function ioc_parser() 
+{	if [[ -d "ioc_parser" ]]; then
 		warning "IOC-Parser is already installed."
 	else
 		notification "Installing IOC-Parser."
@@ -315,10 +414,10 @@ function ioc_parser() {
 		sudo pip install beautifulsoup4 requests
 		notification "IOC-Parer was successfully installed."
 	fi
-}
+	}
 
-function pyparser() {
-	if [[ -d " PyParser-CVE" ]]; then
+function pyparser() 
+{	if [[ -d " PyParser-CVE" ]]; then
 		warning "PyParser-CVE is already installed."
 	else
 		notification "Installing PyParser-CVE."
@@ -329,10 +428,10 @@ function pyparser() {
 		sudo pip install blessings shodan pycurl
 		notification "PyParser-CVE was successfully installed."
 	fi
-}
+	}
 
-function harbinger() {
-	if [[ -d "harbinger" ]]; then
+function harbinger() 
+{	if [[ -d "harbinger" ]]; then
 		warning "Harbinger is already installed."
 	else
 		notification "Installing Harbinger."
@@ -343,10 +442,10 @@ function harbinger() {
 		sudo pip install requests cymon beautifulsoup4
 		notification "Harbinger was successfully installed."
 	fi
-}
+	}
 
-function Spiderfoot() {
-	if [[ -d "spiderfoot" ]]; then
+function Spiderfoot() 
+{	if [[ -d "spiderfoot" ]]; then
 		warning "Spiderfoot is already installed."
 	else
 		notification "Installing Spiderfoot."
@@ -357,18 +456,18 @@ function Spiderfoot() {
 		sudo pip install lxml netaddr M2Crypto cherrypy mako requests bs4
 		notification "Spiderfoot was successfully installed."
 	fi
-}
+	}
 
 # List and download function
-function list() {
-	printf "\n\n"
+function list() 
+{	printf "\n\n"
 	options=("QuickScan" "DNSRecon" "Sublist3r" "TekDefense" "TheHarvester" "IOC-Parser" "PyParser-CVE" "Mimir" "Harbinger" "Spiderfoot" "Main Menu")
 	PS3='Please enter your choice: '
 	select opt in "${options[@]}"
 	do
 		case $opt in
 			"QuickScan")
-				QuickScan
+					QuickScan
 				tools
 				printf "%b \n"
 				;;
@@ -424,11 +523,11 @@ function list() {
 			*) echo invalid option;;
 		esac
 	done
-}
+	}
 
 # Download and install all
-function install_all() {
-	printf "\n\n"
+function install_all() 
+{	printf "\n\n"
 	notification_b "Installing all available tools plus dependencies."
         QuickScan
         DNSRecon
@@ -443,11 +542,11 @@ function install_all() {
 		mass_install=1
 		mimir_install
 	fi
-}
+	}
 
 # Function to interact with online OSINT/Threat Intel resources.
-function online() {
-	notification_b "Online Resources"
+function online() 
+{	notification_b "Online Resources"
 	printf "
 +-----------------------+---------------------------------------+
 | 1. osintframework.com | Comprehensive OSINT Resource Pool     |
@@ -481,10 +580,10 @@ function online() {
 				sleep 1.5 && logo
 		esac
 	done
-}
+	}
 
-function main_menu() {
-	options=("Help" "List and Install" "Install All" "Specify Install Location" "Online Resources" "Quit")
+function main_menu() 
+{	options=("Help" "List and Install" "Install All" "Specify Install Location" "Online Resources" "Quit")
 	PS3='Please enter your choice: '
 	select opt in "${options[@]}"
 	do
@@ -545,6 +644,20 @@ function main_menu() {
 			*) echo invalid option;;
 		esac
 	done
-}
+	}
 
-logo
+if [[ "$EUID" -ne 0 ]]; then
+   warning "It is recommended that this script is run as root"
+   printf "Running it without super user privilege may result "
+   printf "in the utility failing to install critical components correctly \n"
+   
+   read -p 'Continue without root? Y/n : ' choice
+   if [[ $choice == 'y' ]]; then
+       nix_util
+   else
+       warning "Aborted"
+       exit 1
+   fi
+else
+	nix_util
+fi
