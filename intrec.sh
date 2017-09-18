@@ -150,8 +150,7 @@ function mimir_install() {
 	if [[ -d "Mimir" ]]; then
 		warning "Mimir is already installed."
 	else
-		notification "Installing Mimir. Please do not interrupt this process until all dependencies
-and supporting features have been installed as well." && sleep 1
+		notification "Installing Mimir. Please do not interrupt this process until all dependencies and supporting features have been installed as well." && sleep 1
 
 		git clone https://github.com/NullArray/Mimir.git
 
@@ -243,7 +242,7 @@ function QuickScan() {
 		notification "Installing dependencies."
 		sleep 1
 		sudo pip install blessings whois
-		notification "QuickScan was succesfully installed."
+		notification "QuickScan was successfully installed."
 	fi
 }
 
@@ -257,7 +256,7 @@ function DNSRecon() {
 		notification "Installing dependencies"
 		sleep 1
 		sudo pip install dnspython netaddr
-		notification "DNSRecon was succesfully installed."
+		notification "DNSRecon was successfully installed."
 	fi
 }
 
@@ -271,7 +270,7 @@ function Sublist3r() {
 		notification "Installing dependencies."
 		sleep 1
 		sudo pip install argparse dnspython requests
-		notification "Sublist3r was nstalled succesfully."
+		notification "Sublist3r was successfully installed."
 	fi
 }
 
@@ -285,7 +284,7 @@ function TekDefense() {
 		notification "Installing dependencies."
 		sleep 1
 		sudo pip install argparse requests
-		notification "TekDefense-Automater was succesfully installed."
+		notification "TekDefense-Automater was successfully installed."
 	fi
 }
 
@@ -299,7 +298,7 @@ function theHarvester() {
 		notification "Installing dependencies."
 		sleep 1
 		sudo pip install requests
-		notification "TheHarvester was succefully installed."
+		notification "TheHarvester was successfully installed."
 	fi
 }
 
@@ -314,7 +313,7 @@ function ioc_parser() {
 		notification "Installing dependencies."
 		sudo pip install ioc_parser
 		sudo pip install beautifulsoup4 requests
-		notification "IOC-Parer was succesfully installed."
+		notification "IOC-Parer was successfully installed."
 	fi
 }
 
@@ -328,7 +327,7 @@ function pyparser() {
 		notification "Installing dependencies."
 		sleep 1
 		sudo pip install blessings shodan pycurl
-		notification "PyParser-CVE was succesfully installed."
+		notification "PyParser-CVE was successfully installed."
 	fi
 }
 
@@ -342,7 +341,7 @@ function harbinger() {
 		notification "Installing dependencies"
 		sleep 1
 		sudo pip install requests cymon beautifulsoup4
-		notification "Harbinger was succesfully installed."
+		notification "Harbinger was successfully installed."
 	fi
 }
 
@@ -356,7 +355,7 @@ function Spiderfoot() {
 		notification "Installing dependencies."
 		sleep 1
 		sudo pip install lxml netaddr M2Crypto cherrypy mako requests bs4
-		notification "Spiderfoot was succesfully installed"
+		notification "Spiderfoot was successfully installed."
 	fi
 }
 
@@ -431,43 +430,15 @@ function list() {
 function install_all() {
 	printf "\n\n"
 	notification_b "Installing all available tools plus dependencies."
-	if [[ ! -d "QuickScan" ]]; then
-		notification_b "Cloning QuickScan"
-		git clone https://github.com/NullArray/QuickScan.git
-	fi
-
-	if [[ ! -d "dnsrecon" ]]; then
-		git clone https://github.com/darkoperator/dnsrecon.git
-	fi
-
-	if [[ ! -d "Sublist3r" ]]; then
-		git clone https://github.com/aboul3la/Sublist3r.git
-	fi
-
-	if [[ ! -d "TekDefense-Automater" ]]; then
-		git clone https://github.com/1aN0rmus/TekDefense-Automater.git
-	fi
-
-	if [[ ! -d "theHarvester" ]]; then
-		git clone https://github.com/laramies/theHarvester.git
-	fi
-
-	if [[ ! -d "ioc_parser" ]]; then
-		git clone https://github.com/armbues/ioc_parser.git
-	fi
-
-	if [[ ! -d " PyParser-CVE" ]]; then
-		git clone https://github.com/NullArray/PyParser-CVE.git
-	fi
-
-	if [[ ! -d "harbinger" ]]; then
-		git clone https://github.com/exp0se/harbinger.git
-	fi
-
-	if [[ ! -d "spiderfoot" ]]; then
-		git clone https://github.com/smicallef/spiderfoot.git
-	fi
-
+        QuickScan
+        DNSRecon
+        Sublist3r
+        TekDefense
+        theHarvester
+        ioc_parser
+        pyparser
+        harbinger
+        Spiderfoot
 	if [[ ! -d "Mimir" ]]; then
 		mass_install=1
 		mimir_install
