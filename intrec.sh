@@ -47,7 +47,7 @@ function tools()
 +-----------------------+-------------------------------------------+
 | Tool                  | Utility type and feature summary          |
 +-----------------------+-------------------------------------------+
-|1. QuickScan	          | Port Scanner/WHOIS/Domain Resolver        |
+|1. QuickScan	        | Port Scanner/WHOIS/Domain Resolver        |
 |2. DNSRecon            | Advanced DNS Enumeration & Domain Utility |
 |3. Sublist3r           | OSINT Based Subdomain Enumeration         |
 |4. TekDefense-Automator| OSINT Based IP, URL and Hash Analyzer     |
