@@ -452,7 +452,7 @@ function list()
 	do
 		case $opt in
 			"QuickScan")
-					QuickScan
+				QuickScan
 				tools
 				printf "%b \n"
 				;;
@@ -487,7 +487,6 @@ function list()
 				printf "%b \n"
 				;;
 			"Mimir")
-				# Call Mimir install/config function
 				mimir_install
 				printf "%b \n"
 				;;
@@ -523,9 +522,7 @@ function install_all()
         pyparser
         harbinger
         Spiderfoot
-	if [[ ! -d "Mimir" ]]; then
-		mimir_install
-	fi
+	mimir_install
 	}
 
 # Function to interact with online OSINT/Threat Intel resources.
