@@ -174,7 +174,7 @@ function nix_util()
 	esac
 	
 	if [[ $pp != 1 ]]; then
-		warning "Heuristics indicate pip is not installed in this system."
+		warning "Heuristics indicate pip is not installed on this system."
 		notification "Attempting to resolve."
 		sleep 2
 		
