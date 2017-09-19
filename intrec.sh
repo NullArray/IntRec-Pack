@@ -226,19 +226,6 @@ function get_gdriver()
 	fi
 	}
 
-# Component of the mass install operation
-function mass_depend() 
-{	notification "Installing remaining dependencies."
-
-	sudo pip install ioc_parser
-	sudo pip install lxml M2Crypto cherrypy mako requests bs4
-	sudo pip install cymon beautifulsoup4 argparse dnspython
-	sudo pip install blessings shodan pycurl netaddr whois
-
-	notification "All operations completed."
-
-	logo
-	}
 
 # The Mimir install operation will be a little more involved since we will need
 # to check and make sure we have OpenSSL support in the PycURL module
@@ -321,14 +308,12 @@ function mimir_install()
 		fi
 	fi
 
-		if [[ $mass_install == 1 ]]; then
-			mass_depend
-		else
-			notification "Mimir installation and configuration has been completed succesfully."
-			notification "Returning to menu."
-			sleep 2
-			tools
-		fi
+
+		notification "Mimir installation and configuration has been completed succesfully."
+		notification "Returning to menu."
+		sleep 2
+		tools
+
 	}
 
 function QuickScan() 
@@ -539,7 +524,6 @@ function install_all()
         harbinger
         Spiderfoot
 	if [[ ! -d "Mimir" ]]; then
-		mass_install=1
 		mimir_install
 	fi
 	}
