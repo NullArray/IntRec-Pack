@@ -587,7 +587,7 @@ function main_menu()
 
 				if [[ $choice == 'y' || $choice == 'Y' ]]; then
 					read -p 'Enter target location : ' cwd
-					stat $cwd > /dev/null || mkdir $cwd && notification "Directory created." && cd $cwd || warning "Invalid format."
+					cd $cwd > /dev/null || mkdir $cwd && notification "Directory created." && cd $cwd || warning "Invalid format."
 				else
 					notification "Using default setting."
 				fi
