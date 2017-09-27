@@ -20,7 +20,7 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 +-----------------------+-------------------------------------------+
 ```
 
-Furthermore I have included functionality within the Bash script that allows the user to easily pull up two web based resources. Namely [OSINT-Framework](http://osintframework.com) and [HoneyDB](http://riskdiscovery.com/honeydb). The former serves as a curated list of open source intelligence tools, websites and related materials for use as a reference guide. While the latter is an OSINT aggregative threat intelligence pool that collects and organizes data provided by HoneyPy honeypots. My [Command Line Interface](https://github.com/NullArray/Mimir) for which is included in the selection of tools available for download with IntRec-Pack as well.
+Furthermore I have included functionality within the Bash script that allows the user to easily pull up two web based resources. Namely [OSINT-Framework](http://osintframework.com) and [HoneyDB](http://riskdiscovery.com/honeydb). The former serves as a curated list of open source intelligence tools, websites and related materials for use as a reference guide. While the latter is an OSINT aggregative threat intelligence pool that collects and organizes data provided by [HoneyPy](https://github.com/foospidy/HoneyPy) honeypots. My [Command Line Interface](https://github.com/NullArray/Mimir) for which is included in the selection of tools available for download with IntRec-Pack as well.
 
 ## Usage
 
