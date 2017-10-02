@@ -330,8 +330,8 @@ function QuickScan()
 	fi
 	}
 
-function DNSRecon() {
-	if [[ -d "dnsrecon" ]]; then
+function DNSRecon() 
+{	if [[ -d "dnsrecon" ]]; then
 		warning "DNSRecon is already installed."
 	else
 		notification "Installing DNSRecon"
