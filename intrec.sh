@@ -342,7 +342,7 @@ function DNSRecon()
 		sudo pip install dnspython netaddr
 		notification "DNSRecon was successfully installed."
 	fi
-}
+	}
 
 function Sublist3r() 
 {	if [[ -d "Sublist3r" ]]; then
