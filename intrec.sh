@@ -15,7 +15,7 @@ function warning()
 # Green notification
 function notification() 
 {	echo -e "\n$GREEN [+] $1 $RESET\n"
-}
+	}
 
 # Cyan notification
 function notification_b() 
