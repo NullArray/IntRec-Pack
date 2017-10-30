@@ -243,7 +243,10 @@ function mimir_install()
 		notification "Installing dependencies."
 		sleep 1.5
 
-		sudo pip install selenium blessings ipwhois pycurl
+		sudo pip install selenium blessings ipwhois
+                # Some setuptools configs raise a particular error when trying to install pycurl via pip
+                # To account fot this we will use apt-get to perform the operation should this be the case.
+                sudo pip install pycurl || sudo apt-get python-pycurl
 
 		notification "Checking PyCurl for OpenSSL support..."
 		sleep 1.5
