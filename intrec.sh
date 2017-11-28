@@ -33,7 +33,7 @@ function logo()
 
 #################################################################
 #---Author:  NullArray/Vector--#	IntRec-Pack,		#
-#---Twitter: @AntiSec_Inc------#	Intelligence		#
+#---Twitter: @Real__Vector-----#	Intelligence		#
 #---Type:    Bundle Installer--#	and Reconnaissance	#
 #---Version: 1.0.1-------------#	Package Installer	#
 #################################################################" && echo -e "$RESET\n"
