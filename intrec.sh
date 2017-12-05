@@ -35,7 +35,7 @@ function logo()
 #---Author:  NullArray/Vector--#	IntRec-Pack,		#
 #---Twitter: @Real__Vector-----#	Intelligence		#
 #---Type:    Bundle Installer--#	and Reconnaissance	#
-#---Version: 1.0.1-------------#	Package Installer	#
+#---Version: 1.2.1-------------#	Package Installer	#
 #################################################################" && echo -e "$RESET\n"
 	main_menu
 	}
@@ -56,7 +56,9 @@ function tools()
 |7. PyParser-CVE        | Multi Source Exploit Parser/CVE Lookup    |
 |8. Mimir               | HoneyDB CLI/Threat Intelligence Utility   |
 |9. Harbinger           | Cymon.io, Virus Total, Threat Feed Parser |
-|10.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
+|10.Inquisitor          | OSINT Recon/data visualization utility    |
+|11.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
+|12.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
 +-----------------------+-------------------------------------------+\n"
 	list
 	}
@@ -243,10 +245,7 @@ function mimir_install()
 		notification "Installing dependencies."
 		sleep 1.5
 
-		sudo pip install selenium blessings ipwhois
-                # Some setuptools configs raise a particular error when trying to install pycurl via pip
-                # To account for this we will use apt-get to perform the operation should this be the case.
-                sudo pip install pycurl || sudo apt-get install python-pycurl
+		sudo pip install selenium blessings ipwhois pycurl
 
 		notification "Checking PyCurl for OpenSSL support..."
 		sleep 1.5
@@ -319,9 +318,96 @@ function mimir_install()
 
 	}
 
+# This function will be called in the event Ruby gets installed without RubyGems
+# See birdwatcher install below for details
+function gems_install()
+{	notification "Attempting to resolve..."
+	sleep 1
+
+	git clone https://github.com/rubygems/rubygems.git
+	cd rubygems && git submodule update --init
+	sudo ruby setup.rb install
+	
+	gem pristine rake
+	sudo gem update --system
+	
+	notification "Operation complete."
+	sleep 1
+	
+	}
+	
+	
+function BirdWatcher()
+{	if [[ -d "birdwatcher" ]]; then
+		warning "BirdWatcher is already installed."
+		clear
+	else
+		notification "Installing BirdWatcher"
+		sleep 1
+		
+		git clone https://github.com/michenriksen/birdwatcher.git
+		notification "Installing dependencies."
+		sleep 1
+		
+		sudo apt-get install graphviz
+		sudo apt-get install libmagickwand-dev imagemagick
+		
+		rby=$(which ruby)
+		case $rby in
+			*/usr/bin/ruby*)
+			rb=1
+			;;
+		esac
+
+		if [[ $rb == 1 ]]; then
+			notification "Hueristics indicate Ruby is already installed."
+		else
+			notification "Installing Ruby..."
+			sleep 1
+			
+			sudo apt-get install ruby
+		fi
+		
+		notification "Updating gems..."
+		sleep 1
+			
+		sudo gem update --system || warning "Heuristics indicate RubyGems are not installed on this system." && gems_install
+		
+		notification "Checking to see if PostgreSQL is installed."
+		sleep 1
+		
+		check=$(ps -ef | grep postgre)
+		case $check in
+			*/usr/lib/postgresql/*)
+			pgres=1
+			;;
+		esac
+
+		if [[ $pgres == 1 ]]; then
+			notification "Hueristics indicate PostgreSQL is already installed."
+		else
+			notification "Installing PostgreSQL..."
+			sleep 1
+			
+			sudo apt-get install postgresql
+			sudo apt-get install libpq-dev
+			
+			notification "Operation completed."
+
+		fi
+		
+	fi
+		notification "BirdWatcher was succesfully installed."
+		echo "Please reference the BirdWatcher README.md for instructions on"
+		echo "how to set up a PostgreSQL database and configure it for use"
+		echo "with Birdwatcher"
+
+	}
+		
 function QuickScan() 
 {	if [[ -d "QuickScan" ]]; then
 		warning "QuickScan is already installed."
+		clear
 	else
 		notification "Installing QuickScan."
 		sleep 1
@@ -336,6 +422,7 @@ function QuickScan()
 function DNSRecon() 
 {	if [[ -d "dnsrecon" ]]; then
 		warning "DNSRecon is already installed."
+		clear
 	else
 		notification "Installing DNSRecon"
 		sleep 1
@@ -350,6 +437,7 @@ function DNSRecon()
 function Sublist3r() 
 {	if [[ -d "Sublist3r" ]]; then
 		warning "Sublist3r is already installed."
+		clear
 	else
 		notification "Installing Sublist3r."
 		sleep 1
@@ -364,6 +452,7 @@ function Sublist3r()
 function TekDefense() 
 {	if [[ -d "TekDefense-Automater" ]]; then
 		warning "TekDefense-Automater is already installed."
+		clear
 	else
 		notification "Installing TekDefense-Automater."
 		sleep 1
@@ -378,6 +467,7 @@ function TekDefense()
 function theHarvester() 
 {	if [[ -d "theHarvester" ]]; then
 		warning "TheHarvester is already installed."
+		clear
 	else
 		notification "Installing TheHarvester."
 		sleep 1
@@ -392,6 +482,7 @@ function theHarvester()
 function ioc_parser() 
 {	if [[ -d "ioc_parser" ]]; then
 		warning "IOC-Parser is already installed."
+		clear
 	else
 		notification "Installing IOC-Parser."
 		sleep 1
@@ -407,6 +498,7 @@ function ioc_parser()
 function pyparser() 
 {	if [[ -d " PyParser-CVE" ]]; then
 		warning "PyParser-CVE is already installed."
+		clear
 	else
 		notification "Installing PyParser-CVE."
 		sleep 1
@@ -421,6 +513,7 @@ function pyparser()
 function harbinger() 
 {	if [[ -d "harbinger" ]]; then
 		warning "Harbinger is already installed."
+		clear
 	else
 		notification "Installing Harbinger."
 		sleep 1
@@ -432,9 +525,33 @@ function harbinger()
 	fi
 	}
 
+function inquisitor()
+{	if [[ -d "inquisitor" ]]; then
+		warning "Inquisitor is already installed"
+		clear
+	else
+		notification "Installing Inquisitor..."
+		sleep 1
+		git clone https://github.com/penafieljlm/inquisitor.git
+		notification "Installing dependencies"
+		sleep 1
+		sudo pip install cython
+		
+		notification "Building..."
+		sleep 1
+		cwd=$(pwd)
+		cd inquisitor
+		sudo python setup.py install
+		cd $cwd
+		
+		notification "Inquisitor was succesfully installed."
+	fi
+	}
+
 function Spiderfoot() 
 {	if [[ -d "spiderfoot" ]]; then
 		warning "Spiderfoot is already installed."
+		clear
 	else
 		notification "Installing Spiderfoot."
 		sleep 1
@@ -449,7 +566,7 @@ function Spiderfoot()
 # List and download function
 function list() 
 {	printf "\n\n"
-	options=("QuickScan" "DNSRecon" "Sublist3r" "TekDefense" "TheHarvester" "IOC-Parser" "PyParser-CVE" "Mimir" "Harbinger" "Spiderfoot" "Main Menu")
+	options=("QuickScan" "DNSRecon" "Sublist3r" "TekDefense" "TheHarvester" "IOC-Parser" "PyParser-CVE" "Mimir" "Harbinger" "Inquisitor" "BirdWatcher" "Spiderfoot" "Main Menu")
 	PS3='Please enter your choice: '
 	select opt in "${options[@]}"
 	do
@@ -460,32 +577,32 @@ function list()
 				printf "%b \n"
 				;;
 			"DNSRecon")
-			        DNSRecon
+			    DNSRecon
 				tools
 				printf "%b \n"
 				;;
 			"Sublist3r")
-			        Sublist3r
+			    Sublist3r
 				tools
 				printf "%b \n"
 				;;
 			"TekDefense")
-			        TekDefense
+			    TekDefense
 				tools
 				printf "%b \n"
 				;;
 			"TheHarvester")
-			        theHarvester
+			    theHarvester
 				tools
 				printf "%b \n"
 				;;
 			"IOC-Parser")
-			        ioc_parser
+			    ioc_parser
 				tools
 				printf "%b \n"
 				;;
 			"PyParser-CVE")
-			        pyparser
+			     pyparser
 				tools
 				printf "%b \n"
 				;;
@@ -494,12 +611,22 @@ function list()
 				printf "%b \n"
 				;;
 			"Harbinger")
-			        harbinger
+			    harbinger
+				tools
+				printf "%b \n"
+				;;
+			"Inquisitor")
+				inquisitor
+				tools
+				printf "%b \n"
+				;;
+			"BirdWatcher")
+				BirdWatcher
 				tools
 				printf "%b \n"
 				;;
 			"Spiderfoot")
-			        Spiderfoot
+			    Spiderfoot
 				tools
 				printf "%b \n"
 				;;
@@ -524,6 +651,8 @@ function install_all()
         ioc_parser
         pyparser
         harbinger
+        inquisitor
+        BirdWatcher
         Spiderfoot
 	mimir_install
 	}
@@ -534,12 +663,13 @@ function online()
 	printf "
 +-----------------------+---------------------------------------+
 | 1. osintframework.com | Comprehensive OSINT Resource Pool     |
-| 2. riskdiscovery.com  | Hosts HoneyDB/Aggregates Honeypot Data|
+| 2. toddington.com     | Additional OSINT Resource References  | 
+| 3. riskdiscovery.com  | Hosts HoneyDB/Aggregates Honeypot Data|
 +-----------------------+---------------------------------------+
 \n"
 
 	PS3='Please enter your choice: '
-	options=("osintframework.com" "riskdiscovery.com" "Main Menu")
+	options=("osintframework.com" "toddignton.com" "riskdiscovery.com" "Main Menu")
 	select opt in "${options[@]}"
 	do
 		case $opt in
@@ -549,6 +679,14 @@ function online()
 
 				# Python one liner in order to open online resource/web application
 				python -c "from selenium import webdriver; driver = webdriver.Firefox(); driver.get('http://osintframework.com/')"
+				printf "%b \n"
+				;;
+			"toddignton.com")
+				notification "Opening toddington.com/resources with Geckodriver..."
+				sleep 1.5
+				
+				# Python one liner in order to open online resource/web application
+				python -c "from selenium import webdriver; driver = webdriver.Firefox(); driver.get('https://www.toddington.com/resources/')"
 				printf "%b \n"
 				;;
 			"riskdiscovery.com")
