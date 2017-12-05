@@ -7,8 +7,8 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 +-----------------------+-------------------------------------------+
 | Tool                  | Utility type and feature summary          |
 +-----------------------+-------------------------------------------+
-|1. QuickScan	        | Port Scanner/WHOIS/Domain Resolver        | 
-|2. DNSRecon	        | Advanced DNS Enumeration & Domain Utility |
+|1. QuickScan	          | Port Scanner/WHOIS/Domain Resolver        | 
+|2. DNSRecon	          | Advanced DNS Enumeration & Domain Utility |
 |3. Sublist3r           | OSINT Based Subdomain Enumeration         |
 |4. TekDefense-Automator| OSINT Based IP, URL and Hash Analyzer     |
 |5. TheHarvester        | eMail, vHost, Domain and PII Enumeration  |
@@ -16,7 +16,9 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 |7. PyParser-CVE        | Multi Source Exploit Parser/CVE Lookup    |
 |8. Mimir               | HoneyDB CLI/Threat Intelligence Utility   |
 |9. Harbinger           | Cymon.io, Virus Total, Threat Feed Parser |
-|10.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
+|10.Inquisitor          | OSINT Recon/data visualization utility    |
+|11.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
+|12.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   | 
 +-----------------------+-------------------------------------------+
 ```
 
@@ -43,10 +45,12 @@ The **`help`** option displays further usage information and general details abo
 
 ## Update
 
-The script has been updated to version 1.0.1. 
+The script has been updated to version 1.2.1. 
 
 
 **Changelog**
+
+Two additional programs have been added BirdWatch, which is a SOCMINT utility with a focus on twitter and Inquisitor which is an OSINT based Recon tool. Furthermore toddington.com has been added to the `Online Resources` feature to be used as a reference guide to additional OSINT resources.
 
 Each installation operation now has its own function in order to make the script modular. This will also allow for the easy addition of operations that would install other/more tools in the future.
 
