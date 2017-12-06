@@ -50,7 +50,7 @@ The script has been updated to version 1.2.1.
 
 **Changelog**
 
-Two additional programs have been added. BirdWatch, which is a SOCMINT utility with a focus on Twitter and Inquisitor which is an OSINT based Recon tool. Furthermore toddington.com/resources has been added to the `Online Resources` feature to be used as a reference guide to additional OSINT tools, services and more.
+Two additional programs have been added. BirdWatch, which is a SOCMINT utility with a focus on Twitter and Inquisitor which is an OSINT based Recon tool. Furthermore https://toddington.com/resources has been added to the `Online Resources` feature to be used as a reference guide to additional OSINT tools, services and more.
 
 Each installation operation now has its own function in order to make the script modular. This will also allow for the easy addition of operations that would install other/more tools in the future.
 
