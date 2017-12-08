@@ -7,8 +7,8 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 +-----------------------+-------------------------------------------+
 | Tool                  | Utility type and feature summary          |
 +-----------------------+-------------------------------------------+
-|1. QuickScan	        | Port Scanner/WHOIS/Domain Resolver        | 
-|2. DNSRecon	        | Advanced DNS Enumeration & Domain Utility |
+|1. QuickScan	          | Port Scanner/WHOIS/Domain Resolver        | 
+|2. DNSRecon	          | Advanced DNS Enumeration & Domain Utility |
 |3. Sublist3r           | OSINT Based Subdomain Enumeration         |
 |4. TekDefense-Automator| OSINT Based IP, URL and Hash Analyzer     |
 |5. TheHarvester        | eMail, vHost, Domain and PII Enumeration  |
@@ -22,7 +22,7 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 +-----------------------+-------------------------------------------+
 ```
 
-Furthermore I have included functionality within the Bash script that allows the user to easily pull up two web based resources. Namely [OSINT-Framework](http://osintframework.com) and [HoneyDB](http://riskdiscovery.com/honeydb). The former serves as a curated list of open source intelligence tools, websites and related materials for use as a reference guide. While the latter is an OSINT aggregative threat intelligence pool that collects and organizes data provided by [HoneyPy](https://github.com/foospidy/HoneyPy) honeypots. My [Command Line Interface](https://github.com/NullArray/Mimir) for which is included in the selection of tools available for download with IntRec-Pack as well.
+Furthermore I have included functionality within the Bash script that allows the user to easily pull up two web based resources(Three as of update 1.2.1) Namely [OSINT-Framework](http://osintframework.com) and [HoneyDB](http://riskdiscovery.com/honeydb). The former serves as a curated list of open source intelligence tools, websites and related materials for use as a reference guide. While the latter is an OSINT aggregative threat intelligence pool that collects and organizes data provided by [HoneyPy](https://github.com/foospidy/HoneyPy) honeypots. My [Command Line Interface](https://github.com/NullArray/Mimir) for which is included in the selection of tools available for download with IntRec-Pack as well.
 
 ## Usage
 
