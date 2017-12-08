@@ -7,8 +7,8 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 +-----------------------+-------------------------------------------+
 | Tool                  | Utility type and feature summary          |
 +-----------------------+-------------------------------------------+
-|1. QuickScan	          | Port Scanner/WHOIS/Domain Resolver        | 
-|2. DNSRecon	          | Advanced DNS Enumeration & Domain Utility |
+|1. QuickScan	        | Port Scanner/WHOIS/Domain Resolver        | 
+|2. DNSRecon	        | Advanced DNS Enumeration & Domain Utility |
 |3. Sublist3r           | OSINT Based Subdomain Enumeration         |
 |4. TekDefense-Automator| OSINT Based IP, URL and Hash Analyzer     |
 |5. TheHarvester        | eMail, vHost, Domain and PII Enumeration  |
