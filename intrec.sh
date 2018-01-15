@@ -245,8 +245,8 @@ function mimir_install()
 		notification "Installing dependencies."
 		sleep 1.5
 
-		sudo pip install selenium blessings ipwhois pycurl
-
+		sudo pip install selenium blessings ipwhois
+		sudo apt-get install python-pycurl
 		notification "Checking PyCurl for OpenSSL support..."
 		sleep 1.5
 
@@ -376,16 +376,8 @@ function BirdWatcher()
 		notification "Checking to see if PostgreSQL is installed."
 		sleep 1
 		
-		check=$(ps -ef | grep postgre)
-		case $check in
-			*/usr/lib/postgresql/*)
-			pgres=1
-			;;
-		esac
-
-		if [[ $pgres == 1 ]]; then
-			notification "Hueristics indicate PostgreSQL is already installed."
-		else
+		sudo service postgresql status > /dev/null || $check='failed'
+		if [[ $check == 'failed' ]]; then
 			notification "Installing PostgreSQL..."
 			sleep 1
 			
@@ -393,6 +385,8 @@ function BirdWatcher()
 			sudo apt-get install libpq-dev
 			
 			notification "Operation completed."
+		else
+			notification "Hueristics indicate PostgreSQL is already installed."
 
 		fi
 		
@@ -505,7 +499,8 @@ function pyparser()
 		git clone https://github.com/NullArray/PyParser-CVE.git
 		notification "Installing dependencies."
 		sleep 1
-		sudo pip install blessings shodan pycurl
+		sudo pip install blessings shodan
+		sudo apt-get install python-pycurl
 		notification "PyParser-CVE was successfully installed."
 	fi
 	}
@@ -626,7 +621,7 @@ function list()
 				printf "%b \n"
 				;;
 			"Spiderfoot")
-			    Spiderfoot
+			        Spiderfoot
 				tools
 				printf "%b \n"
 				;;
