@@ -92,11 +92,21 @@ dependencies respectively. 'Specify Install Location' allows you to input
 a path to a directory to which you'd like the utilities saved to. The default
 location is the current working directory.
 
-Lastly the 'Online Resources' option will employ the Geckodriver in order
-to open osintframework.com in browser. Which is a web application that
-serves as a curated list of open source intelligence tools, websites and related
-materials for use as a comprehensive reference guide. The second item in the
-'Online Resources' option is HoneyDB which is a threat intelligence aggregator.
+The 'Online Resources' option employs the Mozilla Geckodriver in order to load
+two web based OSINT resource aggregators and an OSINT Threat Intel service as well.
+The first entry under this category is 'osintframework.com' which serves as a 
+curated list of OSINT oriented web services, documentation, and provides a catalog
+of utilities and assorted programs to help customize and expand your intel gathering
+environment and OSINT toolkit in general. 
+
+The second item under 'Online Resources' loads 'toddignton.com/resources'. 
+This website serves as an additional knowledge hub, which can be used as a
+comprehensive reference guide geared towards tooling, techniques, and documentation.
+ 
+The third and final item under this category is HoneyDB which is an OSINT based threat
+intelligence aggregator. HoneyPy honeypots provide the data accesible here and the 
+HoneyDB web application provides a data visualization service and Thread Feed 
+functionality as well.
 \n"
 	}
 
@@ -118,7 +128,7 @@ function nix_util()
 	if [[ $sd != 1 ]]; then
 		warning "Hueristics indicate sudo is not installed on this system."
 		read -p 'Automatically resolve? Y/n : ' choice
-		if [[ $choice == 'y' ]]; then
+		if [[ $choice == 'y' || $choice == 'Y' ]]; then
 			notification "Please enter root password."
 			su -
 			apt-get install sudo && notification "Sudo was succesfully installed" || warning "An error was encountered while trying to install sudo. Quitting..." && exit 1
@@ -572,32 +582,32 @@ function list()
 				printf "%b \n"
 				;;
 			"DNSRecon")
-			    DNSRecon
+			    	DNSRecon
 				tools
 				printf "%b \n"
 				;;
 			"Sublist3r")
-			    Sublist3r
+			    	Sublist3r
 				tools
 				printf "%b \n"
 				;;
 			"TekDefense")
-			    TekDefense
+			    	TekDefense
 				tools
 				printf "%b \n"
 				;;
 			"TheHarvester")
-			    theHarvester
+			    	theHarvester
 				tools
 				printf "%b \n"
 				;;
 			"IOC-Parser")
-			    ioc_parser
+			    	ioc_parser
 				tools
 				printf "%b \n"
 				;;
 			"PyParser-CVE")
-			     pyparser
+			     	pyparser
 				tools
 				printf "%b \n"
 				;;
@@ -606,7 +616,7 @@ function list()
 				printf "%b \n"
 				;;
 			"Harbinger")
-			    harbinger
+			    	harbinger
 				tools
 				printf "%b \n"
 				;;
@@ -769,7 +779,7 @@ if [[ "$EUID" -ne 0 ]]; then
    printf "in the utility failing to install critical components correctly \n"
    
    read -p 'Continue without root? Y/n : ' choice
-   if [[ $choice == 'y' ]]; then
+   if [[ $choice == 'y' || $choice == 'Y' ]]; then
        nix_util
    else
        warning "Aborted"
