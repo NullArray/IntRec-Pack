@@ -199,17 +199,11 @@ function nix_util()
 		notification "Attempting to resolve."
 		sleep 2
 		
-		sudo apt-get install python-setuptools
-		notification "Python setuptools has been installed, installing pip..."
+		notification "Installing Python setuptools and pip"
+		sudo apt-get install python-setuptools python-pip
+		notification "Operation completed"
 		sleep 2
 		
-		cwd=$(pwd)
-		git clone https://github.com/pypa/pip.git && cd pip
-		python setup.py install && cd $cwd
-		rm -rf pip
-		
-		notification "Pip has been succesfully installed."
-		sleep 2
 		fi
 	fi
 		
@@ -265,7 +259,7 @@ function mimir_install()
 		notification "Installing dependencies."
 		sleep 1.5
 
-		sudo pip install selenium blessings ipwhois
+		sudo -H pip install selenium blessings ipwhois
 		sudo apt-get install python-pycurl
 		notification "Checking PyCurl for OpenSSL support..."
 		sleep 1.5
@@ -428,7 +422,7 @@ function QuickScan()
 		git clone https://github.com/NullArray/QuickScan.git
 		notification "Installing dependencies."
 		sleep 1
-		sudo pip install blessings whois
+		sudo -H pip install blessings whois
 		notification "QuickScan was successfully installed."
 	fi
 	}
@@ -443,7 +437,7 @@ function DNSRecon()
 		git clone https://github.com/darkoperator/dnsrecon.git
 		notification "Installing dependencies"
 		sleep 1
-		sudo pip install dnspython netaddr
+		sudo -H pip install dnspython netaddr
 		notification "DNSRecon was successfully installed."
 	fi
 	}
@@ -458,7 +452,7 @@ function Sublist3r()
 		git clone https://github.com/aboul3la/Sublist3r.git
 		notification "Installing dependencies."
 		sleep 1
-		sudo pip install argparse dnspython requests
+		sudo -H pip install argparse dnspython requests
 		notification "Sublist3r was successfully installed."
 	fi
 	}
@@ -473,7 +467,7 @@ function TekDefense()
 		git clone https://github.com/1aN0rmus/TekDefense-Automater.git
 		notification "Installing dependencies."
 		sleep 1
-		sudo pip install argparse requests
+		sudo -H pip install argparse requests
 		notification "TekDefense-Automater was successfully installed."
 	fi
 	}
@@ -488,7 +482,7 @@ function theHarvester()
 		git clone https://github.com/laramies/theHarvester.git
 		notification "Installing dependencies."
 		sleep 1
-		sudo pip install requests
+		sudo -H pip install requests
 		notification "TheHarvester was successfully installed."
 	fi
 }
@@ -503,8 +497,7 @@ function ioc_parser()
 		git clone https://github.com/armbues/ioc_parser.git
 		sleep 1
 		notification "Installing dependencies."
-		sudo pip install ioc_parser
-		sudo pip install beautifulsoup4 requests
+		sudo -H pip install ioc_parser beautifulsoup4 requests
 		notification "IOC-Parer was successfully installed."
 	fi
 	}
@@ -519,7 +512,7 @@ function pyparser()
 		git clone https://github.com/NullArray/PyParser-CVE.git
 		notification "Installing dependencies."
 		sleep 1
-		sudo pip install blessings shodan
+		sudo -H pip install blessings shodan
 		sudo apt-get install python-pycurl
 		notification "PyParser-CVE was successfully installed."
 	fi
@@ -535,7 +528,7 @@ function harbinger()
 		git clone https://github.com/exp0se/harbinger.git
 		notification "Installing dependencies"
 		sleep 1
-		sudo pip install requests cymon beautifulsoup4
+		sudo -H pip install requests cymon beautifulsoup4
 		notification "Harbinger was successfully installed."
 	fi
 	}
@@ -550,13 +543,13 @@ function inquisitor()
 		git clone https://github.com/penafieljlm/inquisitor.git
 		notification "Installing dependencies"
 		sleep 1
-		sudo pip install cython
+		sudo -H pip install cython
 		
 		notification "Building..."
 		sleep 1
 		cwd=$(pwd)
 		cd inquisitor
-		sudo python setup.py install
+		sudo -H python setup.py install
 		cd $cwd
 		
 		notification "Inquisitor was succesfully installed."
@@ -571,9 +564,19 @@ function Spiderfoot()
 		notification "Installing Spiderfoot."
 		sleep 1
 		git clone https://github.com/smicallef/spiderfoot.git
-		notification "Installing dependencies."
+		
+		notification "Installing required SSL components."
 		sleep 1
-		sudo pip install lxml netaddr M2Crypto cherrypy mako requests bs4
+		sudo apt-get install libssl-dev
+		
+		notification "Installing M2Crypto Python OpenSSL wrapper."
+		sleep 1
+		sudo apt-get install python-m2crypto
+		
+		notification "Installing remaining python dependencies."
+		sleep 1
+		
+		sudo -H pip install lxml netaddr cherrypy mako requests bs4
 		notification "Spiderfoot was successfully installed."
 	fi
 	}
