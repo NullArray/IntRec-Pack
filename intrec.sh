@@ -180,12 +180,21 @@ function nix_util()
 	# Check to see if we have pip, if not get setuptools and install pip
 	pypip=$(which pip)
 	case $pypip in
-		*/usr/bin/pip*)
+		*/usr/bin/pip*) 
 		pp=1
 		;;
 	esac
 	
+	if [[ pp != 1 ]]; then
+		case $pypip in
+			*/usr/local/bin/pip*) 
+			pp=2
+			;;
+		esac
+	fi
+	
 	if [[ $pp != 1 ]]; then
+		if [[ $pp != 2 ]]; then
 		warning "Heuristics indicate pip is not installed on this system."
 		notification "Attempting to resolve."
 		sleep 2
@@ -201,6 +210,7 @@ function nix_util()
 		
 		notification "Pip has been succesfully installed."
 		sleep 2
+		fi
 	fi
 		
 	notification "All Linux utilities required by the installer appear to be present. Proceeding to main menu."
@@ -582,32 +592,32 @@ function list()
 				printf "%b \n"
 				;;
 			"DNSRecon")
-			    	DNSRecon
+			    DNSRecon
 				tools
 				printf "%b \n"
 				;;
 			"Sublist3r")
-			    	Sublist3r
+			    Sublist3r
 				tools
 				printf "%b \n"
 				;;
 			"TekDefense")
-			    	TekDefense
+			    TekDefense
 				tools
 				printf "%b \n"
 				;;
 			"TheHarvester")
-			    	theHarvester
+			    theHarvester
 				tools
 				printf "%b \n"
 				;;
 			"IOC-Parser")
-			    	ioc_parser
+			    ioc_parser
 				tools
 				printf "%b \n"
 				;;
 			"PyParser-CVE")
-			     	pyparser
+			    pyparser
 				tools
 				printf "%b \n"
 				;;
@@ -616,7 +626,7 @@ function list()
 				printf "%b \n"
 				;;
 			"Harbinger")
-			    	harbinger
+			    harbinger
 				tools
 				printf "%b \n"
 				;;
@@ -631,7 +641,7 @@ function list()
 				printf "%b \n"
 				;;
 			"Spiderfoot")
-			        Spiderfoot
+			    Spiderfoot
 				tools
 				printf "%b \n"
 				;;
@@ -659,7 +669,7 @@ function install_all()
         inquisitor
         BirdWatcher
         Spiderfoot
-	mimir_install
+		mimir_install
 	}
 
 # Function to interact with online OSINT/Threat Intel resources.
@@ -742,7 +752,7 @@ function main_menu()
 				gecko=$(which geckodriver)
 
 				case $gecko in
-					*/usr/bin/geckodriver*)
+					*/usr/sbin/geckodriver*)
 					gdriver=1
 					;;
 				esac
