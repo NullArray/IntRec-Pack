@@ -126,7 +126,7 @@ function nix_util()
 	esac
 	
 	if [[ $sd != 1 ]]; then
-		warning "Hueristics indicate sudo is not installed on this system."
+		warning "Heuristics indicate sudo is not installed on this system."
 		read -p 'Automatically resolve? Y/n : ' choice
 		if [[ $choice == 'y' || $choice == 'Y' ]]; then
 			notification "Please enter root password."
@@ -273,7 +273,7 @@ function mimir_install()
 		esac
 
 		if [[ $openssl == 1 ]]; then
-			notification "Hueristics indicate your PyCurl version Supports OpenSSL"
+			notification "Heuristics indicate your PyCurl version Supports OpenSSL"
 		else
 			warning "Heuristics indicate your version of PyCurl does not support OpenSSL"
 			notification "Attempting to resolve..."
@@ -298,7 +298,7 @@ function mimir_install()
 		esac
 
 		if [[ $gd == 1 ]]; then
-			notification "Hueristics indicate Geckodriver is currently installed."
+			notification "Heuristics indicate Geckodriver is currently installed."
 		else
 			notification "Installing Mozilla Geckodriver..."
 
@@ -317,7 +317,7 @@ function mimir_install()
 		esac
 
 		if [[ $nm == 1 ]]; then
-			notification "Hueristics indicate Nmap is currently installed."
+			notification "Heuristics indicate Nmap is currently installed."
 		else
 			notification "Installing nmap..."
 			sudo apt-get install nmap
@@ -374,7 +374,7 @@ function BirdWatcher()
 		esac
 
 		if [[ $rb == 1 ]]; then
-			notification "Hueristics indicate Ruby is already installed."
+			notification "Heuristics indicate Ruby is already installed."
 		else
 			notification "Installing Ruby..."
 			sleep 1
@@ -400,7 +400,7 @@ function BirdWatcher()
 			
 			notification "Operation completed."
 		else
-			notification "Hueristics indicate PostgreSQL is already installed."
+			notification "Heuristics indicate PostgreSQL is already installed."
 
 		fi
 		
@@ -590,7 +590,7 @@ function list()
 	do
 		case $opt in
 			"QuickScan")
-				QuickScan
+			    QuickScan
 				tools
 				printf "%b \n"
 				;;
@@ -625,7 +625,7 @@ function list()
 				printf "%b \n"
 				;;
 			"Mimir")
-				mimir_install
+			    mimir_install
 				printf "%b \n"
 				;;
 			"Harbinger")
@@ -634,12 +634,12 @@ function list()
 				printf "%b \n"
 				;;
 			"Inquisitor")
-				inquisitor
+			    inquisitor
 				tools
 				printf "%b \n"
 				;;
 			"BirdWatcher")
-				BirdWatcher
+			    BirdWatcher
 				tools
 				printf "%b \n"
 				;;
