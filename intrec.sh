@@ -55,7 +55,7 @@ function tools()
 |6. IOC-Parser          | Threat Intel, parses IOC data from reports|
 |7. PyParser-CVE        | Multi Source Exploit Parser/CVE Lookup    |
 |8. Mimir               | HoneyDB CLI/Threat Intelligence Utility   |
-|9. Tadpole				| Open AWS bucket, file search and Download |
+|9. Tadpole		| Open AWS bucket, file search and Download |
 |10.Harbinger           | Cymon.io, Virus Total, Threat Feed Parser |
 |11.Inquisitor          | OSINT Recon/data visualization utility    |
 |12.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
