@@ -7,18 +7,19 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 +-----------------------+-------------------------------------------+
 | Tool                  | Utility type and feature summary          |
 +-----------------------+-------------------------------------------+
-|1. QuickScan	        | Port Scanner/WHOIS/Domain Resolver        | 
-|2. DNSRecon	        | Advanced DNS Enumeration & Domain Utility |
+|1. QuickScan	        | Port Scanner/WHOIS/Domain Resolver        |
+|2. DNSRecon            | Advanced DNS Enumeration & Domain Utility |
 |3. Sublist3r           | OSINT Based Subdomain Enumeration         |
 |4. TekDefense-Automator| OSINT Based IP, URL and Hash Analyzer     |
 |5. TheHarvester        | eMail, vHost, Domain and PII Enumeration  |
 |6. IOC-Parser          | Threat Intel, parses IOC data from reports|
 |7. PyParser-CVE        | Multi Source Exploit Parser/CVE Lookup    |
 |8. Mimir               | HoneyDB CLI/Threat Intelligence Utility   |
-|9. Harbinger           | Cymon.io, Virus Total, Threat Feed Parser |
-|10.Inquisitor          | OSINT Recon/data visualization utility    |
-|11.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
-|12.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   | 
+|9. Tadpole				| Open AWS bucket, file search and Download |
+|10.Harbinger           | Cymon.io, Virus Total, Threat Feed Parser |
+|11.Inquisitor          | OSINT Recon/data visualization utility    |
+|12.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
+|13.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
 +-----------------------+-------------------------------------------+
 ```
 
@@ -49,6 +50,8 @@ The script has been updated to version 1.2.1.
 
 
 **Changelog**
+
+Tadpole has been added to the latest version. This program allows you to search for and download items from open AWS buckets.
 
 Two additional programs have been added. BirdWatch, which is a SOCMINT utility with a focus on Twitter and Inquisitor which is an OSINT based Recon tool. Furthermore https://toddington.com/resources has been added to the `Online Resources` feature to be used as a reference guide to additional OSINT tools, services and more.
 
