@@ -55,10 +55,11 @@ function tools()
 |6. IOC-Parser          | Threat Intel, parses IOC data from reports|
 |7. PyParser-CVE        | Multi Source Exploit Parser/CVE Lookup    |
 |8. Mimir               | HoneyDB CLI/Threat Intelligence Utility   |
-|9. Harbinger           | Cymon.io, Virus Total, Threat Feed Parser |
-|10.Inquisitor          | OSINT Recon/data visualization utility    |
-|11.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
-|12.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
+|9. Tadpole				| Open AWS bucket, file search and Download |
+|10.Harbinger           | Cymon.io, Virus Total, Threat Feed Parser |
+|11.Inquisitor          | OSINT Recon/data visualization utility    |
+|12.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
+|13.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
 +-----------------------+-------------------------------------------+\n"
 	list
 	}
@@ -427,6 +428,21 @@ function QuickScan()
 	fi
 	}
 
+function TadPole()
+{	if [[ -d "tadpole" ]]; then
+		warning "TadPole is already installed"
+		clear
+	else
+		notification "Installing TadPole"
+		sleep 1
+		git clone https://github.com/Ekultek/tadpole.git
+		notification "Installing dependencies."
+		sudo -H pip install beautifulsoup4 requests
+		notification "TadPole was successfully installed."
+		
+	fi
+	}
+
 function DNSRecon() 
 {	if [[ -d "dnsrecon" ]]; then
 		warning "DNSRecon is already installed."
@@ -584,13 +600,18 @@ function Spiderfoot()
 # List and download function
 function list() 
 {	printf "\n\n"
-	options=("QuickScan" "DNSRecon" "Sublist3r" "TekDefense" "TheHarvester" "IOC-Parser" "PyParser-CVE" "Mimir" "Harbinger" "Inquisitor" "BirdWatcher" "Spiderfoot" "Main Menu")
+	options=("QuickScan" "TadPole" "DNSRecon" "Sublist3r" "TekDefense" "TheHarvester" "IOC-Parser" "PyParser-CVE" "Mimir" "Harbinger" "Inquisitor" "BirdWatcher" "Spiderfoot" "Main Menu")
 	PS3='Please enter your choice: '
 	select opt in "${options[@]}"
 	do
 		case $opt in
 			"QuickScan")
 			    QuickScan
+				tools
+				printf "%b \n"
+				;;
+			"TadPole")
+			    tadpole
 				tools
 				printf "%b \n"
 				;;
@@ -662,6 +683,7 @@ function install_all()
 {	printf "\n\n"
 	notification_b "Installing all available tools plus dependencies."
         QuickScan
+        tadpole
         DNSRecon
         Sublist3r
         TekDefense
@@ -672,7 +694,7 @@ function install_all()
         inquisitor
         BirdWatcher
         Spiderfoot
-		mimir_install
+	mimir_install
 	}
 
 # Function to interact with online OSINT/Threat Intel resources.
