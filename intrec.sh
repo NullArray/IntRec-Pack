@@ -611,7 +611,7 @@ function list()
 				printf "%b \n"
 				;;
 			"TadPole")
-			    tadpole
+			    TadPole
 				tools
 				printf "%b \n"
 				;;
@@ -683,7 +683,7 @@ function install_all()
 {	printf "\n\n"
 	notification_b "Installing all available tools plus dependencies."
         QuickScan
-        tadpole
+        TadPole
         DNSRecon
         Sublist3r
         TekDefense
