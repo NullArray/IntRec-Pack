@@ -61,7 +61,7 @@ Additional checks have been added to the script in order to look for the presenc
 
 From now on IntRec-Pack will check to see if it has been started with super user privilege. Since there are a lot of `sudo` commands in the script this will prevent the user from running into trouble halfway through the execution.
 
-Special thanks to [Chandrapal](https://github.com/Chan9390) for his contributions the tool.
+Special thanks to [Chandrapal](https://github.com/Chan9390) for his contributions to the tool.
 
 ### Note
 
