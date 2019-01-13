@@ -20,6 +20,7 @@ IntRec-Pack is a Bash script designed to download, install and deploy several qu
 |11.Inquisitor          | OSINT Recon/data visualization utility    |
 |12.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
 |13.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
+|14.EagleEye            | Facial recognition powered SOCMINT utility|
 +-----------------------+-------------------------------------------+
 ```
 
@@ -46,10 +47,12 @@ The **`help`** option displays further usage information and general details abo
 
 ## Update
 
-The script has been updated to version 1.2.1. 
+The script has been updated to version 1.3.0. 
 
 
 **Changelog**
+
+This update adds EagleEye to the list of tools available for download. EagleEye is a SOCMINT utility that makes use of reverse image searcher and facial recognition.
 
 Tadpole has been added to the latest version. This program allows you to search for and download items from open AWS buckets.
 
