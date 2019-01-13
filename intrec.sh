@@ -60,6 +60,7 @@ function tools()
 |11.Inquisitor          | OSINT Recon/data visualization utility    |
 |12.BirdWatch           | SOCMINT Utility with a focus on Twitter   |
 |13.Spiderfoot          | Advanced OSINT/Reconnaissance Framework   |
+|14.EagleEye            | Facial recognition powered SOCMINT utility|
 +-----------------------+-------------------------------------------+\n"
 	list
 	}
@@ -412,7 +413,48 @@ function BirdWatcher()
 		echo "with Birdwatcher"
 
 	}
+
+function EaglEye()
+{	if [[ -d "EagleEye" ]]; then
+		warning "EagleEye is already installed"
+		clear
+	else
+		notification "Installing EagleEye"
+		notification "Retrieving auto installer Shell script"
+		wget https://raw.githubusercontent.com/ThoughtfulDev/EagleEye/master/install.sh
+		chmod +x install.sh && ./install.sh
+		sleep 1 && clear
 		
+		notification_b "Checking for GeckoDriver"
+		
+		gdrive=$(which geckodriver)
+		case $gdrive in
+			*/usr/bin/geckodriver*)
+			gd=1
+			;;
+		esac
+               
+	       # We're checking here as well solely because ThoughtfulDev(The author of the tool in question)
+	       # has this exact location listed as example of where geckodriver should/could go, technically
+	       # geckodriver can go anywhere as long as it gets exported to $PATH but you got to draw the line somewhere.
+	       # Check out ThoughtfulDev on Github https://github.com/ThoughtfulDev cool projects!
+	       	case $gdrive in
+		  	*/usr/local/bin/geckodriver*)
+			gd=1 
+			;;
+		esac
+
+		if [[ $gd == 1 ]]; then
+			notification "Heuristics indicate Geckodriver is currently installed."
+		else
+			notification "Installing Mozilla Geckodriver..."
+
+			get_gdriver && sleep 1.5
+			notification "Operation completed."
+		fi
+	fi
+	}
+
 function QuickScan() 
 {	if [[ -d "QuickScan" ]]; then
 		warning "QuickScan is already installed."
@@ -427,6 +469,8 @@ function QuickScan()
 		notification "QuickScan was successfully installed."
 	fi
 	}
+
+
 
 function TadPole()
 {	if [[ -d "tadpole" ]]; then
@@ -607,71 +651,71 @@ function list()
 		case $opt in
 			"QuickScan")
 			    QuickScan
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"TadPole")
 			    TadPole
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"DNSRecon")
 			    DNSRecon
-				tools
-				printf "%b \n"
+			    tools
+		            printf "%b \n"
 				;;
 			"Sublist3r")
 			    Sublist3r
-				tools
-				printf "%b \n"
+			    tools
+		            printf "%b \n"
 				;;
 			"TekDefense")
 			    TekDefense
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"TheHarvester")
 			    theHarvester
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"IOC-Parser")
 			    ioc_parser
-				tools
-				printf "%b \n"
+			    tools
+		            printf "%b \n"
 				;;
 			"PyParser-CVE")
 			    pyparser
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"Mimir")
 			    mimir_install
-				printf "%b \n"
+			    printf "%b \n"
 				;;
 			"Harbinger")
 			    harbinger
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"Inquisitor")
 			    inquisitor
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"BirdWatcher")
 			    BirdWatcher
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"Spiderfoot")
 			    Spiderfoot
-				tools
-				printf "%b \n"
+			    tools
+			    printf "%b \n"
 				;;
 			"Main Menu")
-				printf "\nReturning to main menu."
-				sleep 2 && logo
+			    printf "\nReturning to main menu."
+			    sleep 2 && logo
 				;;
 			*) echo invalid option;;
 		esac
@@ -695,6 +739,7 @@ function install_all()
         BirdWatcher
         Spiderfoot
 	mimir_install
+	EagleEye
 	}
 
 # Function to interact with online OSINT/Threat Intel resources.
@@ -777,7 +822,7 @@ function main_menu()
 				gecko=$(which geckodriver)
 
 				case $gecko in
-					*/usr/sbin/geckodriver*)
+					*/usr/bin/geckodriver*)
 					gdriver=1
 					;;
 				esac
