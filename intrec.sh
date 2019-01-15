@@ -421,7 +421,7 @@ function EaglEye()
 	else
 		notification "Installing EagleEye"
 		notification "Retrieving auto installer Shell script"
-		wget https://raw.githubusercontent.com/ThoughtfulDev/EagleEye/master/install.sh
+		wget -O installer.sh https://raw.githubusercontent.com/ThoughtfulDev/EagleEye/master/install.sh
 		chmod +x install.sh && ./install.sh
 		sleep 1 && clear
 		
