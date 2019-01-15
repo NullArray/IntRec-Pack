@@ -35,7 +35,7 @@ function logo()
 #---Author:  NullArray/Vector--#	IntRec-Pack,		#
 #---Twitter: @Real__Vector-----#	Intelligence		#
 #---Type:    Bundle Installer--#	and Reconnaissance	#
-#---Version: 1.2.1-------------#	Package Installer	#
+#---Version: 1.3.0-------------#	Package Installer	#
 #################################################################" && echo -e "$RESET\n"
 	main_menu
 	}
