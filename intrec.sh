@@ -644,7 +644,7 @@ function Spiderfoot()
 # List and download function
 function list() 
 {	printf "\n\n"
-	options=("QuickScan" "TadPole" "DNSRecon" "Sublist3r" "TekDefense" "TheHarvester" "IOC-Parser" "PyParser-CVE" "Mimir" "Harbinger" "Inquisitor" "BirdWatcher" "Spiderfoot" "Main Menu")
+	options=("QuickScan" "TadPole" "DNSRecon" "Sublist3r" "TekDefense" "TheHarvester" "IOC-Parser" "PyParser-CVE" "Mimir" "Harbinger" "Inquisitor" "BirdWatcher" "Spiderfoot" "EagleEye"  "Main Menu")
 	PS3='Please enter your choice: '
 	select opt in "${options[@]}"
 	do
@@ -710,6 +710,11 @@ function list()
 				;;
 			"Spiderfoot")
 			    Spiderfoot
+			    tools
+			    printf "%b \n"
+				;;
+			 "EagleEye")
+			    EaglEye
 			    tools
 			    printf "%b \n"
 				;;
