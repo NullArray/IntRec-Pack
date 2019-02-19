@@ -52,7 +52,7 @@ The script has been updated to version 1.3.0.
 
 **Changelog**
 
-This update adds EagleEye to the list of tools available for download. EagleEye is a SOCMINT utility that makes use of reverse image searcher and facial recognition.
+This update adds EagleEye to the list of tools available for download. EagleEye is a SOCMINT utility that makes use of reverse image searches and facial recognition.
 
 Tadpole has been added to the latest version. This program allows you to search for and download items from open AWS buckets.
 
